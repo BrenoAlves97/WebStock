@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Logo from '../../assets/img_croche.jpg';
+import Logo from '../../../assets/img_croche.jpg';
 
 import styles from './custom-input-file.module.css';
 

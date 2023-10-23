@@ -7,11 +7,11 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { db, storage } from '../../firebase/firebase.app';
 
-import { CustomInput } from '../custom-input/custom-input.component';
-import { CustomButton } from '../custom-button/custom-button.component.jsx';
-import { CustomTextArea } from '../custom-text-area/custom-text-area.component.jsx';
-import { CustomSelect } from '../custom/custom-select.component.jsx';
-import { CustomInputFile } from '../custom-input-file/custom-input-file.component.jsx';
+import { CustomInput } from './custom-input/custom-input.component';
+import { CustomButton } from './custom-button/custom-button.component.jsx';
+import { CustomTextArea } from './custom-text-area/custom-text-area.component.jsx';
+import { CustomSelect } from './custom/custom-select.component.jsx';
+import { CustomInputFile } from './custom-input-file/custom-input-file.component.jsx';
 
 import styles from './form.module.css';
 
