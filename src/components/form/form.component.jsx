@@ -21,7 +21,6 @@ export const Form = () => {
   const [productDescription, setProductDescription] = React.useState('');
   const [quantityInStock, setQuantityInStock] = React.useState('');
   const [productCategory, setProductCategory] = React.useState('');
-  const [urlImage, setUrlImage] = React.useState('');
   const [img, setImg] = React.useState(null);
   const [imgDB, setImgDB] = React.useState(null);
 
