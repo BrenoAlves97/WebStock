@@ -16,10 +16,10 @@ html,
 .container {
   width: 100%;
   max-width: 800px;
-  height: 100%;
   margin: 0 auto;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
 .animeLeft {
   animation: 0.1s slide-left ease-in forwards;
   opacity: 0;

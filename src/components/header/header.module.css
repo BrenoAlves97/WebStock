@@ -1,0 +1,33 @@
+.header {
+  padding: 1rem;
+  background: #141414;
+  color: #e7e7e7;
+}
+
+.header_content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo,
+.header_content p {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.1s ease-in;
+}
+
+.logo:hover,
+.header_content p:hover {
+  opacity: 1;
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.header_content p {
+  font-size: 1.1rem;
+}

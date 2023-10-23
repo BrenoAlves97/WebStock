@@ -1,15 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './header.module.css';
 
 export const Header = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateProducts = () => {
+    navigate('/estoque');
+  };
+
+  const handleNavigateHome = () => {
+    navigate('/');
+  };
+
   return (
     <header className={styles.header}>
-      <h2 className={styles.logo}>Achei Crochê</h2>
+      <div className={styles.header_content}>
+        <h2 className={styles.logo} onClick={handleNavigateHome}>
+          Achei Crochê
+        </h2>
 
-      <nav className={styles.nav}>
-        <p>Estoque</p>
-      </nav>
+        <nav className={styles.nav}>
+          <p onClick={handleNavigateProducts}>Estoque</p>
+        </nav>
+      </div>
     </header>
   );
 };
