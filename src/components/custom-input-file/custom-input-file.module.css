@@ -1,0 +1,40 @@
+.input_container {
+  display: grid;
+  place-items: center;
+}
+
+.input_container > * {
+  grid-area: 1 / 1;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+}
+
+.input_container span {
+  z-index: 100;
+}
+
+.input_container:hover span {
+  transform: scale(1.4);
+}
+
+.input_container img,
+.input_container input {
+  border-radius: 50%;
+}
+
+.input_container input {
+  width: 170px;
+  height: 170px;
+  opacity: 0;
+  z-index: 101;
+}
+
+.active_image {
+  opacity: 1;
+}
+
+.input_container img {
+  object-fit: cover;
+  filter: grayscale(30%);
+  opacity: 0.6;
+}

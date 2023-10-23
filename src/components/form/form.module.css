@@ -1,0 +1,25 @@
+.form {
+  width: 100%;
+  margin: 1rem auto;
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form_title {
+  grid-column: 1 / -1;
+  margin-bottom: 2rem;
+  font-family: Poppins;
+}
+
+.grid_btn {
+  grid-column: 1 /-1;
+}
+
+.upload_container {
+  background: #f7f7f7;
+  display: grid;
+  place-items: center;
+  border-radius: 0.2rem;
+}

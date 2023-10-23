@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Roboto Mono, sans-serif;
+  outline: none;
+}
+
+body,
+html,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.animeLeft {
+  animation: 0.1s slide-left ease-in forwards;
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+@keyframes slide-left {
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul li {
+  list-style: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #d7d7d7;
+}
