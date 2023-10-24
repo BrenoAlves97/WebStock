@@ -27,6 +27,7 @@ export const Category = () => {
             category: doc.data().category,
             price: doc.data().price.replace(',', '.'),
             quantity: doc.data().quantity,
+            sales: doc.data().sales,
           });
 
           setProducts(arrData);
@@ -60,6 +61,7 @@ export const Category = () => {
               <th scope="col">Preço</th>
               <th scope="col">Em estoque</th>
               <th scope="col">Categoria</th>
+              <th scope="col">Vendas</th>
             </tr>
           </thead>
 
@@ -70,6 +72,7 @@ export const Category = () => {
                 <td>{formatedValue.format(Number(item.price))}</td>
                 <td>{item.quantity}</td>
                 <td>{item.category}</td>
+                <td>{item.sales}</td>
               </tr>
             ))}
           </tbody>

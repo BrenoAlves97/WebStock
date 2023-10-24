@@ -24,6 +24,7 @@ export const Form = () => {
   const [productCategory, setProductCategory] = React.useState('');
   const [img, setImg] = React.useState(null);
   const [imgDB, setImgDB] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
 
   const clearInput = () => {
     setProductName('');
@@ -50,6 +51,7 @@ export const Form = () => {
     if (!checkInputs) return;
 
     try {
+      setLoading(true);
       const uploadRef = ref(storage, `images/${imgDB.name}`);
       uploadBytes(uploadRef, imgDB).then((snapshot) => {
         getDownloadURL(snapshot.ref).then(async (downloadURL) => {
@@ -70,6 +72,7 @@ export const Form = () => {
 
           await setDoc(docRef, product).then(() => {
             toast.success('Produto adicionado com sucesso!');
+            setLoading(false);
             return clearInput();
           });
         });
@@ -136,7 +139,7 @@ export const Form = () => {
       </div>
 
       <div className={styles.grid_btn}>
-        <CustomButton>Enviar</CustomButton>
+        <CustomButton>{loading ? 'Adicionando produto...' : 'Adicionar produto'}</CustomButton>
       </div>
     </form>
   );
