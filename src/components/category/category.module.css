@@ -1,0 +1,43 @@
+.category_content {
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+.loading_message,
+.error_message {
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table thead tr,
+.table tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+.table thead th,
+.table tbody td {
+  padding: 0.5rem;
+  text-transform: capitalize;
+}
+
+.table tbody td {
+  cursor: pointer;
+}
+
+thead th:first-child {
+  border-radius: 0.4rem 0 0 0.4rem;
+}
+
+thead th:last-child {
+  border-radius: 0 0.4rem 0.4rem 0;
+}
