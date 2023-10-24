@@ -6,7 +6,6 @@
 .loading_message,
 .error_message {
   text-align: center;
-  font-size: 2rem;
   padding: 1rem;
 }
 
@@ -32,6 +31,7 @@
 
 .table tbody td {
   cursor: pointer;
+  line-height: 1.5;
 }
 
 thead th:first-child {
