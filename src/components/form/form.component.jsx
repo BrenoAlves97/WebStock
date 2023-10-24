@@ -55,6 +55,7 @@ export const Form = () => {
         getDownloadURL(snapshot.ref).then(async (downloadURL) => {
           let urlPhoto = downloadURL;
           const product = {
+            date: new Date(),
             id: Math.random(),
             name: productName,
             price: productPrice,
@@ -62,6 +63,7 @@ export const Form = () => {
             quantity: quantityInStock,
             category: productCategory,
             productImage: urlPhoto,
+            sales: 0,
           };
 
           const docRef = doc(db, '@products', `${product.id}`);
