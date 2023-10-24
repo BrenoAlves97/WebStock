@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { toast } from 'react-hot-toast';
 import { FiUpload } from 'react-icons/fi';
 
 import { addDoc, collection } from 'firebase/firestore';
@@ -64,14 +64,13 @@ export const Form = () => {
           };
 
           await addDoc(collection(db, '@products'), product).then(() => {
-            console.log('Adicionado com sucesso!');
+            toast.success('Produto adicionado com sucesso!');
+            return clearInput();
           });
         });
       });
     } catch (err) {
-      console.log(err);
-    } finally {
-      clearInput();
+      toast.error('Houve algum erro.');
     }
   };
 
