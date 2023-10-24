@@ -2,7 +2,7 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 import { FiUpload } from 'react-icons/fi';
 
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { db, storage } from '../../firebase/firebase.app';
@@ -16,6 +16,7 @@ import { CustomInputFile } from './custom-input-file/custom-input-file.component
 import styles from './form.module.css';
 
 export const Form = () => {
+  // states -> send to firebase
   const [productName, setProductName] = React.useState('');
   const [productPrice, setProductPrice] = React.useState('');
   const [productDescription, setProductDescription] = React.useState('');
@@ -63,7 +64,9 @@ export const Form = () => {
             productImage: urlPhoto,
           };
 
-          await addDoc(collection(db, '@products'), product).then(() => {
+          const docRef = doc(db, '@products', `${product.id}`);
+
+          await setDoc(docRef, product).then(() => {
             toast.success('Produto adicionado com sucesso!');
             return clearInput();
           });
