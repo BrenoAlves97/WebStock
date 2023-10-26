@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Dashboard } from '../../components/category/category.component.jsx';
+import { Dashboard } from '../../components/dashboard/dashboard.component.jsx';
 
 export const Products = () => {
   return (

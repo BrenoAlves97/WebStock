@@ -3,7 +3,7 @@ import React from 'react';
 import { getDocs, collection, query } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app.js';
 
-import styles from './category.module.css';
+import styles from './dashboard.module.css';
 
 export const Dashboard = () => {
   const [products, setProducts] = React.useState(null);
