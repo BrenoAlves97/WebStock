@@ -5,7 +5,7 @@ import { db } from '../../firebase/firebase.app.js';
 
 import styles from './category.module.css';
 
-export const Category = () => {
+export const Dashboard = () => {
   const [products, setProducts] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
