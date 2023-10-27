@@ -1,4 +1,6 @@
 import React from 'react';
+import { FiTrash, FiEdit2 } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 import { getDocs, collection, query } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app.js';
@@ -8,6 +10,8 @@ import styles from './dashboard.module.css';
 export const Dashboard = () => {
   const [products, setProducts] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const formatedValue = Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -42,9 +46,11 @@ export const Dashboard = () => {
     fetchProducts();
   }, []);
 
-  const handleClick = (product) => {
-    console.log(product);
+  const handleEditItem = (productId) => {
+    navigate(`/editar/${productId}`);
   };
+
+  const handleRemoveItem = async (productId) => {};
 
   if (loading) return <h2 className={`container ${styles.loading_message}`}>Buscando produtos...</h2>;
 
@@ -62,17 +68,29 @@ export const Dashboard = () => {
               <th scope="col">Em estoque</th>
               <th scope="col">Categoria</th>
               <th scope="col">Vendas</th>
+              <th scope="col"></th>
             </tr>
           </thead>
 
           <tbody>
             {products.map((item) => (
-              <tr key={item.id} onClick={() => handleClick(item)}>
+              <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{formatedValue.format(Number(item.price))}</td>
                 <td>{item.quantity}</td>
                 <td>{item.category}</td>
                 <td>{item.sales}</td>
+                <td>
+                  <span>
+                    <FiTrash size={18} color="#141414" className={styles.btn_remove} />
+                    <FiEdit2
+                      size={18}
+                      color="#141414"
+                      className={styles.edit}
+                      onClick={() => handleEditItem(item.id)}
+                    />
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>

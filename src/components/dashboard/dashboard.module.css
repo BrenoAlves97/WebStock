@@ -16,6 +16,7 @@
   table-layout: fixed;
   border-collapse: collapse;
   text-align: left;
+  text-align: center;
 }
 
 .table thead tr,
@@ -26,7 +27,7 @@
 .table thead th {
   font-weight: 600;
   text-transform: uppercase;
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 .table tbody td {
@@ -36,7 +37,6 @@
 }
 
 .table tbody td {
-  cursor: pointer;
   line-height: 1.5;
 }
 
@@ -46,4 +46,23 @@ thead th:first-child {
 
 thead th:last-child {
   border-radius: 0 0.4rem 0.4rem 0;
+}
+
+table td span {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn_remove,
+.edit {
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  margin-right: 0.5rem;
+  opacity: 0.7;
+}
+
+.btn_remove:hover,
+.edit:hover {
+  opacity: 1;
 }
