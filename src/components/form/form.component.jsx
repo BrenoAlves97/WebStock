@@ -58,7 +58,7 @@ export const Form = () => {
           let urlPhoto = downloadURL;
           const product = {
             date: new Date(),
-            id: Math.random(),
+            id: Math.floor(Math.random() * 1000),
             name: productName,
             price: productPrice,
             description: productDescription,
@@ -139,7 +139,7 @@ export const Form = () => {
       </div>
 
       <div className={styles.grid_btn}>
-        <CustomButton>{loading ? 'Adicionando produto...' : 'Adicionar produto'}</CustomButton>
+        <CustomButton loading={loading}>{loading ? 'Adicionando produto...' : 'Adicionar produto'}</CustomButton>
       </div>
     </form>
   );
