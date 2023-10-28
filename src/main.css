@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Roboto Mono, sans-serif;
+  font-family: 'Roboto Mono', sans-serif;
   outline: none;
 }
 
@@ -48,6 +48,8 @@ ul li {
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: #d7d7d7;
+textarea::placeholder,
+select,
+option {
+  font-family: 'Poppins';
 }
