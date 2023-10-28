@@ -7,6 +7,8 @@
 .error_message {
   text-align: center;
   padding: 1rem;
+  color: #a3a3a3;
+  font-size: 1rem;
 }
 
 .table {
@@ -31,13 +33,11 @@
 }
 
 .table tbody td {
-  padding: 0.5rem;
+  height: 75px;
+  padding: 0.2rem;
   text-transform: capitalize;
   font-size: 0.875rem;
-}
-
-.table tbody td {
-  line-height: 1.5;
+  line-height: 150%;
 }
 
 thead th:first-child {
