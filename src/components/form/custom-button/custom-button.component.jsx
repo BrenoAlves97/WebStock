@@ -2,9 +2,14 @@ import React from 'react';
 
 import styles from './custom-button.module.css';
 
-export const CustomButton = ({ children, onClick, ...props }) => {
+export const CustomButton = ({ children, onClick, loading, ...props }) => {
   return (
-    <button onClick={onClick} className={styles.button} {...props}>
+    <button
+      style={{ cursor: `${loading ? 'not-allowed' : 'pointer'}` }}
+      onClick={onClick}
+      className={styles.button}
+      {...props}
+    >
       {children}
     </button>
   );
