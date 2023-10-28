@@ -30,6 +30,7 @@
   font-weight: 600;
   text-transform: uppercase;
   padding: 1rem;
+  font-family: 'Roboto Mono';
 }
 
 .table tbody td {
@@ -38,6 +39,7 @@
   text-transform: capitalize;
   font-size: 0.875rem;
   line-height: 150%;
+  font-family: 'Poppins';
 }
 
 thead th:first-child {
