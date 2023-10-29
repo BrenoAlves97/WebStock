@@ -55,6 +55,7 @@ export const Dashboard = () => {
     await deleteDoc(doc(db, '@products', String(productId)))
       .then(async () => {
         toast.success('Produto removido de sua lista');
+        setProducts((products) => products.filter((item) => item.id !== productId));
         return await fetchProducts();
       })
       .catch((err) => {
