@@ -1,6 +1,7 @@
 .input_container {
   display: grid;
   place-items: center;
+  padding: 1rem;
 }
 
 .input_container > * {
@@ -37,4 +38,12 @@
   object-fit: cover;
   filter: grayscale(30%);
   opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .input_container img,
+  .input_container input {
+    width: 120px;
+    height: 120px;
+  }
 }

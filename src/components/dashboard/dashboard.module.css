@@ -9,6 +9,7 @@
   padding: 1rem;
   color: #a3a3a3;
   font-size: 1rem;
+  background: transparent;
 }
 
 .table {
@@ -56,6 +57,38 @@ table td span {
   gap: 1rem;
 }
 
+@media (max-width: 700px) {
+  .table thead tr {
+    display: none;
+  }
+
+  .table tbody td {
+    background: transparent;
+    padding: 0 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    border-bottom: 2px solid #d7d7d7;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .table tbody td:last-child {
+    margin-bottom: 2rem;
+    border: 0;
+  }
+
+  .table thead tr,
+  .table tbody tr:nth-child(even) {
+    background: transparent;
+  }
+}
+
 .btn_remove,
 .edit {
   cursor: pointer;
@@ -67,4 +100,28 @@ table td span {
 .btn_remove:hover,
 .edit:hover {
   opacity: 1;
+}
+
+.search_container {
+  width: 100%;
+  justify-content: end;
+  padding: 0.2rem 1rem;
+  display: flex;
+}
+
+.search_container button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  border: 1px solid transparent;
+  transition: 0.2s ease-in;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.8;
+  border-radius: 0.5rem;
+}
+
+.search_container button:hover {
+  opacity: 1;
+  border: 1px solid #ddd;
 }

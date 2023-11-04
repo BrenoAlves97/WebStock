@@ -17,6 +17,7 @@ html,
   width: 100%;
   max-width: 800px;
   margin: 1rem auto;
+  background: transparent;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -52,4 +53,19 @@ textarea::placeholder,
 select,
 option {
   font-family: 'Poppins';
+}
+
+@media (max-width: 880px) {
+  .container {
+    max-width: 640px;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 90%;
+    max-width: 540px;
+    padding: 0 1rem;
+  }
 }

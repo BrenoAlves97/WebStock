@@ -63,56 +63,57 @@ export const Dashboard = () => {
       });
   };
 
-  if (loading) return <h2 className={`container ${styles.loading_message}`}>Buscando produtos...</h2>;
+  if (loading) return <h2 className={`${styles.loading_message}`}>Buscando produtos...</h2>;
 
-  if (products.length === 0)
-    return <h2 className={`container ${styles.error_message}`}>Nenhum produto encontrado...</h2>;
+  if (products.length === 0) return <h2 className={styles.error_message}>Nenhum produto encontrado...</h2>;
 
   return (
     products.length > 0 &&
     !loading && (
-      <div className={styles.category_content}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th scope="col">Nome</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Em estoque</th>
-              <th scope="col">Categoria</th>
-              <th scope="col">Vendas</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {products.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{formatedValue.format(Number(item.price))}</td>
-                <td>{item.quantity}</td>
-                <td>{item.category}</td>
-                <td>{item.sales}</td>
-                <td>
-                  <span>
-                    <FiTrash
-                      size={18}
-                      color="#141414"
-                      className={styles.btn_remove}
-                      onClick={() => handleRemoveItem(item.id)}
-                    />
-                    <FiEdit2
-                      size={18}
-                      color="#141414"
-                      className={styles.edit}
-                      onClick={() => handleEditItem(item.id)}
-                    />
-                  </span>
-                </td>
+      <>
+        <div className={styles.category_content}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Em estoque</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Vendas</th>
+                <th scope="col"></th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+
+            <tbody>
+              {products.map((item) => (
+                <tr key={item.id}>
+                  <td data-label="Nome">{item.name}</td>
+                  <td data-label="Preço">{formatedValue.format(Number(item.price))}</td>
+                  <td data-label="Em Estoque">{item.quantity}</td>
+                  <td data-label="Categoria">{item.category}</td>
+                  <td data-label="Vendas">{item.sales}</td>
+                  <td data-label="Remover/Editar">
+                    <span>
+                      <FiTrash
+                        size={18}
+                        color="#141414"
+                        className={styles.btn_remove}
+                        onClick={() => handleRemoveItem(item.id)}
+                      />
+                      <FiEdit2
+                        size={18}
+                        color="#141414"
+                        className={styles.edit}
+                        onClick={() => handleEditItem(item.id)}
+                      />
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
     )
   );
 };

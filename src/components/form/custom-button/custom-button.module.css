@@ -15,3 +15,9 @@
   background: #e7e7e7;
   border-color: #fff;
 }
+
+@media (max-width: 640px) {
+  .button {
+    font-size: 0.875rem;
+  }
+}

@@ -134,7 +134,7 @@ export const Form = () => {
 
       <div className={styles.upload_container}>
         <CustomInputFile type="file" accept="image/*" value={img} setValue={setImg} setImgDB={setImgDB}>
-          <FiUpload size={30} color="#000" />
+          <FiUpload size={25} color="#000" />
         </CustomInputFile>
       </div>
 

@@ -27,7 +27,6 @@ export const Edit = () => {
     try {
       const docRef = doc(db, '@products', id);
       const docSnap = await getDoc(docRef);
-      console.log(docSnap.data());
 
       setProductName(docSnap.data().name);
       setProductPrice(docSnap.data().price);
@@ -69,7 +68,7 @@ export const Edit = () => {
       {loading && <h2>Carregando informações...</h2>}
       {!loading && (
         <form className={styles.form} onSubmit={handleUpdate}>
-          <h2>Edite informações do produto</h2>
+          <h2>Editar Produto</h2>
           <div>
             <CustomInput
               id="name"
