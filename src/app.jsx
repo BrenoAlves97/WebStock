@@ -6,6 +6,7 @@ import { Home } from './pages/home/home.page.jsx';
 import { Products } from './pages/products/products.page.jsx';
 import { Edit } from './pages/edit/edit.page.jsx';
 import { Header } from './components/header/header.component.jsx';
+import { Footer } from './components/footer/footer.component.jsx';
 
 export const App = () => {
   return (
@@ -29,6 +30,7 @@ export const App = () => {
           <Route path="/estoque" element={<Products />} />
           <Route path="/editar/:id" element={<Edit />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
