@@ -2,8 +2,6 @@ import React from 'react';
 
 import Logo from '../../../assets/img_croche.jpg';
 
-import styles from './custom-input-file.module.css';
-
 export const CustomInputFile = ({ children, id, value, setValue, setImgDB, ...props }) => {
   const [image, setImage] = React.useState(null);
 
@@ -23,16 +21,16 @@ export const CustomInputFile = ({ children, id, value, setValue, setImgDB, ...pr
   };
 
   return (
-    <div className={styles.input_container}>
-      <span>{children}</span>
-      <input onChange={handleChange} {...props} />
-      <img
-        className={value && styles.active_image}
-        src={value ? value : Logo}
-        alt="Imagem Inicial de Crochê"
-        width={170}
-        height={170}
-      />
+    <div className="flex items-center justify-center relative rounded-full duration-75 border-2 border-transparent hover:border-gray-500/80">
+      <button className="cursor-pointer flex items-center justify-center absolute">
+        <div>
+          <span className="cursor-pointer">{children}</span>
+        </div>
+        <div className="cursor-pointer w-full relative items-center flex justify-center group">
+          <input onChange={handleChange} {...props} className="opacity-0 cursor-pointer absolute" />
+        </div>
+      </button>
+      <img className="w-52 h-52 rounded-full" src={value ? value : Logo} alt="Imagem Inicial de Crochê" />
     </div>
   );
 };

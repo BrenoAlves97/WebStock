@@ -13,8 +13,6 @@ import { CustomTextArea } from './custom-text-area/custom-text-area.component.js
 import { CustomSelect } from './custom/custom-select.component.jsx';
 import { CustomInputFile } from './custom-input-file/custom-input-file.component.jsx';
 
-import styles from './form.module.css';
-
 export const Form = () => {
   // states -> send to firebase
   const [productName, setProductName] = React.useState('');
@@ -83,62 +81,63 @@ export const Form = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmitPress}>
-      <h2 className={styles.form_title}>Registre seu produto</h2>
+    <form className="w-full mb-6" onSubmit={handleSubmitPress}>
+      <h2 className="text-2xl sm:text-3xl font-bold text-white my-6 font-sans">Registre seu produto</h2>
 
-      <div>
-        <CustomInput
-          id="name"
-          type="text"
-          label="Nome:"
-          placeholder="Ex: Camisa de Crochê"
-          value={productName}
-          setValue={setProductName}
-        />
+      <div className="flex gap-8 sm:flex-row flex-col">
+        <div className="flex-1">
+          <CustomInput
+            id="name"
+            type="text"
+            label="Nome:"
+            placeholder="Ex: Camisa de Crochê"
+            value={productName}
+            setValue={setProductName}
+          />
 
-        <CustomInput
-          id="price"
-          type="text"
-          label="Preço:"
-          placeholder="Ex: 49.90"
-          value={productPrice}
-          setValue={setProductPrice}
-        />
+          <CustomInput
+            id="price"
+            type="text"
+            label="Preço:"
+            placeholder="Ex: 49.90"
+            value={productPrice}
+            setValue={setProductPrice}
+          />
 
-        <CustomTextArea
-          label="Sobre o produto:"
-          id="description"
-          name="description"
-          placeholder="Digite sobre seu produto..."
-          value={productDescription}
-          setValue={setProductDescription}
-        />
+          <CustomTextArea
+            label="Sobre o produto:"
+            id="description"
+            name="description"
+            placeholder="Digite sobre seu produto..."
+            value={productDescription}
+            setValue={setProductDescription}
+          />
 
-        <CustomInput
-          id="amount"
-          type="text"
-          label="Quantidade em estoque"
-          placeholder="Ex: 10"
-          value={quantityInStock}
-          setValue={setQuantityInStock}
-        />
+          <CustomInput
+            id="amount"
+            type="text"
+            label="Quantidade em estoque"
+            placeholder="Ex: 10"
+            value={quantityInStock}
+            setValue={setQuantityInStock}
+          />
 
-        <CustomSelect
-          label="Selecione a categoria"
-          id="category"
-          name="category"
-          value={productCategory}
-          setValue={setProductCategory}
-        />
+          <CustomSelect
+            label="Selecione a categoria"
+            id="category"
+            name="category"
+            value={productCategory}
+            setValue={setProductCategory}
+          />
+        </div>
+
+        <div className="flex-1 flex items-center justify-center">
+          <CustomInputFile type="file" accept="image/*" value={img} setValue={setImg} setImgDB={setImgDB}>
+            <FiUpload size={25} color="#fff" />
+          </CustomInputFile>
+        </div>
       </div>
-
-      <div className={styles.upload_container}>
-        <CustomInputFile type="file" accept="image/*" value={img} setValue={setImg} setImgDB={setImgDB}>
-          <FiUpload size={25} color="#000" />
-        </CustomInputFile>
-      </div>
-
-      <div className={styles.grid_btn}>
+      <div className="w-full">
         <CustomButton loading={loading}>{loading ? 'Adicionando produto...' : 'Adicionar produto'}</CustomButton>
       </div>
     </form>
