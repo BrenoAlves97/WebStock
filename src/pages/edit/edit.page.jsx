@@ -9,8 +9,6 @@ import { CustomButton } from '../../components/form/custom-button/custom-button.
 import { CustomInput } from '../../components/form/custom-input/custom-input.component';
 import { CustomTextArea } from '../../components/form/custom-text-area/custom-text-area.component';
 
-import styles from './edit.module.css';
-
 export const Edit = () => {
   const [productName, setProductName] = React.useState('');
   const [productPrice, setProductPrice] = React.useState('');
@@ -64,11 +62,16 @@ export const Edit = () => {
   };
 
   return (
-    <div className="container animeLeft">
-      {loading && <h2>Carregando informações...</h2>}
+    <div className="flex-1 w-full bg-gray-300 px-6 bg-gradient-to-r from-gray-600 via-slate-800 to-gray-900 py-6">
+      {loading && (
+        <div className="w-full max-w-3xl mx-auto items-center text-center flex justify-center mt-24">
+          <h2 className="font-medium text-xl sm:text-2xl text-white">Carregando informações...</h2>
+        </div>
+      )}
+
       {!loading && (
-        <form className={styles.form} onSubmit={handleUpdate}>
-          <h2>Editar Produto</h2>
+        <form className="w-full max-w-3xl px-6 mx-auto mb-6" onSubmit={handleUpdate}>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white my-6 font-sans">Editar Produto</h2>
           <div>
             <CustomInput
               id="name"

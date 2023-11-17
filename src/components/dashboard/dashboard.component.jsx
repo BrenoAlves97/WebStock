@@ -6,8 +6,6 @@ import toast from 'react-hot-toast';
 import { doc, deleteDoc, getDocs, collection, query, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app.js';
 
-import styles from './dashboard.module.css';
-
 export const Dashboard = () => {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -63,55 +61,59 @@ export const Dashboard = () => {
       });
   };
 
-  if (loading) return <h2 className={`${styles.loading_message}`}>Buscando produtos...</h2>;
+  if (loading)
+    return (
+      <div className="w-full max-w-3xl mx-auto flex items-center text-center justify-center mt-24">
+        <h2 className="font-medium text-xl sm:text-2xl text-white">Buscando produtos...</h2>
+      </div>
+    );
 
-  if (products.length === 0) return <h2 className={styles.error_message}>Nenhum produto encontrado...</h2>;
+  if (products.length === 0)
+    return (
+      <div className="w-full max-w-3xl mx-auto items-center text-center flex justify-center mt-24">
+        <h2 className="font-medium text-xl sm:text-2xl text-white">Nenhum produto encontrado...</h2>
+      </div>
+    );
 
   return (
     products.length > 0 &&
     !loading && (
       <>
-        <div className={styles.category_content}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th scope="col">Nome</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Em estoque</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Vendas</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
+        <div className="w-full max-w-3xl mx-auto">
+          <div className="w-full text-gray-50">
+            <div>
+              <div className="w-full flex text-white text-center font-mediun text-base sm:text-xl uppercase">
+                <span className="flex-1">Nome</span>
+                <span className="flex-1">Preço</span>
+                <span className="flex-1 hidden sm:flex">Estoque</span>
+                <span className="flex-1 hidden sm:flex">Categoria</span>
+                <span className="flex-1">Vendas</span>
+                <span className="flex-1">Ações</span>
+              </div>
+            </div>
 
-            <tbody>
+            <ul className="w-full mt-4">
               {products.map((item) => (
-                <tr key={item.id}>
-                  <td data-label="Nome">{item.name}</td>
-                  <td data-label="Preço">{formatedValue.format(Number(item.price))}</td>
-                  <td data-label="Em Estoque">{item.quantity}</td>
-                  <td data-label="Categoria">{item.category}</td>
-                  <td data-label="Vendas">{item.sales}</td>
-                  <td data-label="Remover/Editar">
-                    <span>
-                      <FiTrash
-                        size={18}
-                        color="#141414"
-                        className={styles.btn_remove}
-                        onClick={() => handleRemoveItem(item.id)}
-                      />
-                      <FiEdit2
-                        size={18}
-                        color="#141414"
-                        className={styles.edit}
-                        onClick={() => handleEditItem(item.id)}
-                      />
+                <li key={item.id} className="flex text-center py-2 items-center text-base ">
+                  <span className="flex-1">{item.name}</span>
+                  <span className="flex-1">{formatedValue.format(Number(item.price))}</span>
+                  <span className="flex-1 hidden sm:flex">{item.quantity}</span>
+                  <span className="flex-1 hidden sm:flex">{item.category}</span>
+                  <span className="flex-1">{item.sales}</span>
+                  <span className="flex-1">
+                    <span className="space-x-6">
+                      <button>
+                        <FiTrash size={18} color="#fff" className="" onClick={() => handleRemoveItem(item.id)} />
+                      </button>
+                      <button>
+                        <FiEdit2 size={18} color="#fff" className="" onClick={() => handleEditItem(item.id)} />
+                      </button>
                     </span>
-                  </td>
-                </tr>
+                  </span>
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </div>
         </div>
       </>
     )

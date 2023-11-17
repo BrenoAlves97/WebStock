@@ -30,7 +30,11 @@ export const CustomInputFile = ({ children, id, value, setValue, setImgDB, ...pr
           <input onChange={handleChange} {...props} className="opacity-0 cursor-pointer absolute" />
         </div>
       </button>
-      <img className="w-52 h-52 rounded-full" src={value ? value : Logo} alt="Imagem Inicial de Crochê" />
+      <img
+        className="w-52 h-52 rounded-full object-cover object-center"
+        src={value ? value : Logo}
+        alt="Imagem Inicial de Crochê"
+      />
     </div>
   );
 };

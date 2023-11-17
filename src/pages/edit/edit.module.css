@@ -1,9 +1,0 @@
-.form {
-  padding: 1rem;
-}
-
-@media (max-width: 700px) {
-  .form h2 {
-    font-size: 1.3rem;
-  }
-}
