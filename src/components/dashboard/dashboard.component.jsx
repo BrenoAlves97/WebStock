@@ -57,11 +57,11 @@ export const Dashboard = () => {
         product.images.map(async (image) => {
           const imagePath = `images/${image.id}`;
           const imageRef = ref(storage, imagePath);
-          await deleteObject(imageRef).then(async () => {});
+          await deleteObject(imageRef).then(async () => {
+            setProducts((products) => products.filter((item) => item.id !== product.id));
+          });
         });
-        toast.success('Produto removido de sua lista');
-        setProducts((products) => products.filter((item) => item.id !== product.id));
-        return await fetchProducts();
+        return toast.success('Produto removido de sua lista');
       })
       .catch((err) => {
         return toast.error('Houve algum erro...');
