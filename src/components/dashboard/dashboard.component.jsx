@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { FiTrash, FiEdit2 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
-import { doc, deleteDoc, getDocs, collection, query, getDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebase.app.js';
+import { doc, deleteDoc, getDocs, collection } from 'firebase/firestore';
+import { ref, deleteObject } from 'firebase/storage';
+import { db, storage } from '../../firebase/firebase.app.js';
 
 export const Dashboard = () => {
   const [products, setProducts] = React.useState([]);
@@ -30,6 +31,7 @@ export const Dashboard = () => {
           price: doc.data().price.replace(',', '.'),
           quantity: doc.data().quantity,
           sales: doc.data().sales,
+          images: doc.data().images,
         });
 
         setProducts(arrData);
@@ -49,11 +51,16 @@ export const Dashboard = () => {
     navigate(`/editar/${productId}`);
   };
 
-  const handleRemoveItem = async (productId) => {
-    await deleteDoc(doc(db, '@products', String(productId)))
+  const handleRemoveItem = async (product) => {
+    await deleteDoc(doc(db, '@products', String(product.id)))
       .then(async () => {
+        product.images.map(async (image) => {
+          const imagePath = `images/${image.id}`;
+          const imageRef = ref(storage, imagePath);
+          await deleteObject(imageRef).then(async () => {});
+        });
         toast.success('Produto removido de sua lista');
-        setProducts((products) => products.filter((item) => item.id !== productId));
+        setProducts((products) => products.filter((item) => item.id !== product.id));
         return await fetchProducts();
       })
       .catch((err) => {
@@ -79,7 +86,7 @@ export const Dashboard = () => {
     products.length > 0 &&
     !loading && (
       <>
-        <div className="w-full max-w-3xl mx-auto">
+        <div className="w-full max-w-4xl mx-auto">
           <div className="w-full text-gray-50">
             <div>
               <div className="w-full flex text-white text-center font-mediun text-base sm:text-xl uppercase">
@@ -96,9 +103,9 @@ export const Dashboard = () => {
               {products.map((item) => (
                 <li
                   key={item.id}
-                  className="flex text-center p-1 items-center  text-[14px] sm:text-base bg-gray-600/50 min-h-[70px] rounded-lg "
+                  className="flex text-center p-1 items-center text-[14px] sm:text-base bg-gray-600/50 hover:bg-gray-600/80 duration-200 h-[60px] rounded-lg "
                 >
-                  <span className="flex-1">{item.name}</span>
+                  <span className="flex-1 lowercase">{item.name}</span>
                   <span className="flex-1">{formatedValue.format(Number(item.price))}</span>
                   <span className="flex-1 hidden sm:inline-block">{item.quantity}</span>
                   <span className="flex-1 hidden sm:inline-block">{item.category}</span>
@@ -106,7 +113,7 @@ export const Dashboard = () => {
                   <span className="flex-1">
                     <span className="space-x-4">
                       <button>
-                        <FiTrash size={18} color="#fff" className="" onClick={() => handleRemoveItem(item.id)} />
+                        <FiTrash size={18} color="#fff" className="" onClick={() => handleRemoveItem(item)} />
                       </button>
                       <button>
                         <FiEdit2 size={18} color="#fff" className="" onClick={() => handleEditItem(item.id)} />
