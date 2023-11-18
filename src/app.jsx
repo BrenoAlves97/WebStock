@@ -13,7 +13,7 @@ export const App = () => {
     <>
       <BrowserRouter>
         <Toaster
-          position="top-center"
+          position="top-right"
           toastOptions={{
             className: '',
             style: {

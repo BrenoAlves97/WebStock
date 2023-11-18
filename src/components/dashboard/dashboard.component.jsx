@@ -85,23 +85,26 @@ export const Dashboard = () => {
               <div className="w-full flex text-white text-center font-mediun text-base sm:text-xl uppercase">
                 <span className="flex-1">Nome</span>
                 <span className="flex-1">Preço</span>
-                <span className="flex-1 hidden sm:flex">Estoque</span>
-                <span className="flex-1 hidden sm:flex">Categoria</span>
+                <span className="flex-1 hidden sm:inline-block">Estoque</span>
+                <span className="flex-1 hidden sm:inline-block">Categoria</span>
                 <span className="flex-1">Vendas</span>
                 <span className="flex-1">Ações</span>
               </div>
             </div>
 
-            <ul className="w-full mt-4">
+            <ul className="w-full mt-4 space-y-1">
               {products.map((item) => (
-                <li key={item.id} className="flex text-center py-2 items-center text-base ">
+                <li
+                  key={item.id}
+                  className="flex text-center p-1 items-center  text-[14px] sm:text-base bg-gray-600/50 min-h-[70px] rounded-lg "
+                >
                   <span className="flex-1">{item.name}</span>
                   <span className="flex-1">{formatedValue.format(Number(item.price))}</span>
-                  <span className="flex-1 hidden sm:flex">{item.quantity}</span>
-                  <span className="flex-1 hidden sm:flex">{item.category}</span>
+                  <span className="flex-1 hidden sm:inline-block">{item.quantity}</span>
+                  <span className="flex-1 hidden sm:inline-block">{item.category}</span>
                   <span className="flex-1">{item.sales}</span>
                   <span className="flex-1">
-                    <span className="space-x-6">
+                    <span className="space-x-4">
                       <button>
                         <FiTrash size={18} color="#fff" className="" onClick={() => handleRemoveItem(item.id)} />
                       </button>
