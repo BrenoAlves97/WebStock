@@ -1,8 +1,11 @@
 import React from 'react';
 import { toast } from 'react-hot-toast';
 import { FiUpload } from 'react-icons/fi';
+import { v4 as uuidV4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
+import { ClipLoader } from 'react-spinners';
 
-import { doc, setDoc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 import { db, storage } from '../../firebase/firebase.app';
@@ -20,9 +23,17 @@ export const Form = () => {
   const [productDescription, setProductDescription] = React.useState('');
   const [quantityInStock, setQuantityInStock] = React.useState('');
   const [productCategory, setProductCategory] = React.useState('');
-  const [img, setImg] = React.useState(null);
-  const [imgDB, setImgDB] = React.useState(null);
+  const [imagesArr, setImagesArr] = React.useState([]);
+
   const [loading, setLoading] = React.useState(false);
+
+  const [imagesLoadUrl, setImagesLoadUrl] = React.useState([]);
+
+  const navigate = useNavigate();
+
+  const handleImagesLoad = (image) => {
+    setImagesLoadUrl((prevState) => [...prevState, image.url]);
+  };
 
   const clearInput = () => {
     setProductName('');
@@ -30,53 +41,86 @@ export const Form = () => {
     setProductDescription('');
     setQuantityInStock('');
     setProductCategory('');
-    setImg(null);
   };
 
-  const handleSubmitPress = async (event) => {
-    event.preventDefault();
+  const handleUpload = async (file) => {
+    const imageId = uuidV4();
 
-    if (!imgDB) return;
+    const uploadRef = ref(storage, `images/${imageId}`);
 
-    const checkInputs =
-      productName !== '' &&
-      productPrice !== '' &&
-      productDescription !== '' &&
-      quantityInStock !== '' &&
-      productCategory !== '' &&
-      img !== null;
-
-    if (!checkInputs) return;
-
-    try {
-      setLoading(true);
-      const uploadRef = ref(storage, `images/${imgDB.name}`);
-      uploadBytes(uploadRef, imgDB).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then(async (downloadURL) => {
-          let urlPhoto = downloadURL;
-          const product = {
-            date: new Date(),
-            id: Math.floor(Math.random() * 1000),
-            name: productName,
-            price: productPrice,
-            description: productDescription,
-            quantity: quantityInStock,
-            category: productCategory,
-            productImage: urlPhoto,
-            sales: 0,
+    await uploadBytes(uploadRef, file)
+      .then(async (snapshot) => {
+        await getDownloadURL(snapshot.ref).then((downloadUrl) => {
+          const previewImage = {
+            id: imageId,
+            previewUrl: URL.createObjectURL(file),
+            url: downloadUrl,
           };
 
-          const docRef = doc(db, '@products', `${product.id}`);
-
-          await setDoc(docRef, product).then(() => {
-            toast.success('Produto adicionado com sucesso!');
-            setLoading(false);
-            return clearInput();
-          });
+          setImagesArr((prevState) => [...prevState, previewImage]);
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    } catch (err) {
-      toast.error('Houve algum erro.');
+  };
+
+  const handleFile = async (event) => {
+    const result = event.target.files[0];
+    if (result) {
+      if (result.type === 'image/png' || result.type === 'image/jpeg') {
+        await handleUpload(result);
+      } else {
+        toast.error('Tipo não suportado...');
+      }
+    }
+  };
+
+  const handleSubmitPress = async (e) => {
+    e.preventDefault();
+
+    if (imagesArr.length === 0) return toast.error('Insira ao menos uma imagem...');
+
+    const checkInputs =
+      productName === '' &&
+      productCategory === '' &&
+      productDescription === '' &&
+      productPrice === '' &&
+      quantityInStock === '';
+
+    if (!checkInputs) {
+      const idDoc = uuidV4();
+
+      const product = {
+        id: idDoc,
+        name: productName.toUpperCase(),
+        price: productPrice,
+        description: productDescription,
+        category: productCategory,
+        sales: 0,
+        quantity: quantityInStock,
+        created: new Date(),
+        images: imagesArr,
+      };
+
+      const ref = doc(db, '@products', idDoc);
+      setLoading(true);
+      await setDoc(ref, product)
+        .then(() => {
+          toast.success('Produto adicionado com sucesso...');
+          setImagesArr([]);
+          clearInput();
+          navigate('estoque', { replace: true });
+          setLoading(false);
+          return;
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          return toast.error('Ocorreu algum erro...');
+        });
+    } else {
+      return toast.error('Verique todos os campos...');
     }
   };
 
@@ -90,7 +134,7 @@ export const Form = () => {
             id="name"
             type="text"
             label="Nome:"
-            placeholder="Ex: Camisa de Crochê"
+            placeholder="Nome do produto"
             value={productName}
             setValue={setProductName}
           />
@@ -99,7 +143,7 @@ export const Form = () => {
             id="price"
             type="text"
             label="Preço:"
-            placeholder="Ex: 49.90"
+            placeholder="49.90"
             value={productPrice}
             setValue={setProductPrice}
           />
@@ -117,7 +161,7 @@ export const Form = () => {
             id="amount"
             type="text"
             label="Quantidade em estoque"
-            placeholder="Ex: 10"
+            placeholder="10"
             value={quantityInStock}
             setValue={setQuantityInStock}
           />
@@ -131,14 +175,48 @@ export const Form = () => {
           />
         </div>
 
-        <div className="flex-1 flex items-center justify-center">
-          <CustomInputFile type="file" accept="image/*" value={img} setValue={setImg} setImgDB={setImgDB}>
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <CustomInputFile type="file" accept="image/*" handleFile={handleFile}>
             <FiUpload size={25} color="#fff" />
           </CustomInputFile>
         </div>
       </div>
+
+      <div className="w-full borde-2 border-gray-700/25 rounded-lg my-12">
+        <div className="w-full flex gap-2 items-center justify-center flex-wrap sm:flex-nowrap">
+          {imagesArr.length > 0 ? (
+            imagesArr.map((image) => (
+              <div key={image.id} className="w-full">
+                <div
+                  className="w-full h-48 sm:h-52 bg-gray-400 rounded-lg"
+                  style={{ display: !imagesLoadUrl.includes(image.url) ? 'block' : 'none' }}
+                >
+                  <div className="w-full h-full items-center justify-center flex">
+                    <ClipLoader size={24} color="#141414" />
+                  </div>
+                </div>
+
+                <img
+                  style={{ display: imagesLoadUrl.includes(image.url) ? 'block' : 'none' }}
+                  onLoad={() => handleImagesLoad(image)}
+                  className="w-full h-48 sm:h-52 object-cover object-center rounded-lg"
+                  src={image.url}
+                  alt={image.id}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="flex-1 text-center">
+              <h2 className="text-base text-gray-50 font-sans font-bold">Nenhuma imagem adicionada...</h2>
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="w-full">
-        <CustomButton loading={loading}>{loading ? 'Adicionando produto...' : 'Adicionar produto'}</CustomButton>
+        <CustomButton loading={loading}>
+          {loading ? <ClipLoader size={16} color="#141414" /> : 'Adicionar produto'}
+        </CustomButton>
       </div>
     </form>
   );

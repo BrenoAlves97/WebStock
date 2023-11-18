@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { ClipLoader } from 'react-spinners';
 
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app';
@@ -25,7 +26,6 @@ export const Edit = () => {
     try {
       const docRef = doc(db, '@products', id);
       const docSnap = await getDoc(docRef);
-
       setProductName(docSnap.data().name);
       setProductPrice(docSnap.data().price);
       setProductDescription(docSnap.data().description);
@@ -47,16 +47,18 @@ export const Edit = () => {
     setLoading(true);
     const docRef = doc(db, '@products', id);
     await updateDoc(docRef, {
-      name: productName,
+      name: productName.toUpperCase(),
       description: productDescription,
       price: productPrice,
       quantity: quantityInStock,
     })
       .then(() => {
         toast.success('Produto atualizado com sucesso!');
+        setLoading(false);
         return navigate('/estoque');
       })
       .catch((err) => {
+        setLoading(false);
         return toast.error('Ops... houve algum erro...');
       });
   };
@@ -77,7 +79,7 @@ export const Edit = () => {
               id="name"
               type="text"
               label="Nome:"
-              placeholder="Ex: Camisa de Crochê"
+              placeholder="Camisa de Crochê"
               value={productName}
               setValue={setProductName}
             />
@@ -86,7 +88,7 @@ export const Edit = () => {
               id="price"
               type="text"
               label="Preço:"
-              placeholder="Ex: 49.90"
+              placeholder="49.90"
               value={productPrice}
               setValue={setProductPrice}
             />
@@ -104,14 +106,14 @@ export const Edit = () => {
               id="amount"
               type="text"
               label="Quantidade em estoque"
-              placeholder="Ex: 10"
+              placeholder="10"
               value={quantityInStock}
               setValue={setQuantityInStock}
             />
           </div>
 
           <div>
-            <CustomButton>{loading ? 'Editando produto...' : 'Editar produto'}</CustomButton>
+            <CustomButton>{loading ? <ClipLoader size={16} color="#141414" /> : 'Editar produto'}</CustomButton>
           </div>
         </form>
       )}
