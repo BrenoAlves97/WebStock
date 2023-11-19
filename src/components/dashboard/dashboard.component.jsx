@@ -86,7 +86,7 @@ export const Dashboard = () => {
     products.length > 0 &&
     !loading && (
       <>
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-4xl mx-auto ">
           <div className="w-full text-gray-50">
             <div>
               <div className="w-full flex text-white text-center font-mediun text-base sm:text-xl uppercase">
@@ -99,17 +99,17 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <ul className="w-full mt-4 space-y-1">
+            <ul className="w-full mt-4 space-y-1 py-2 px-1 edited-height overflow-y-auto">
               {products.map((item) => (
                 <li
                   key={item.id}
-                  className="flex text-center p-1 items-center text-[14px] sm:text-base bg-gray-600/50 hover:bg-gray-600/80 duration-200 h-[60px] rounded-lg "
+                  className="flex text-center p-1 items-center text-[14px] sm:text-base bg-gray-600/50 hover:bg-gray-600/80 duration-200 min-h-[60px] rounded-lg "
                 >
                   <span className="flex-1 lowercase">{item.name}</span>
                   <span className="flex-1">{formatedValue.format(Number(item.price))}</span>
                   <span className="flex-1 hidden sm:inline-block">{item.quantity}</span>
                   <span className="flex-1 hidden sm:inline-block">{item.category}</span>
-                  <span className="flex-1">{item.sales}</span>
+                  <span className="flex-1 hidden sm:inline-block">{item.sales}</span>
                   <span className="flex-1">
                     <span className="space-x-4">
                       <button>
