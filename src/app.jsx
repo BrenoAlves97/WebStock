@@ -5,6 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import { Home } from './pages/home/home.page.jsx';
 import { Products } from './pages/products/products.page.jsx';
 import { Edit } from './pages/edit/edit.page.jsx';
+import { Detail } from './pages/detail/detail.page.jsx';
+
 import { Header } from './components/header/header.component.jsx';
 import { Footer } from './components/footer/footer.component.jsx';
 
@@ -29,6 +31,7 @@ export const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/estoque" element={<Products />} />
           <Route path="/editar/:id" element={<Edit />} />
+          <Route path="/detalhes/:id" element={<Detail />} />
         </Routes>
         <Footer />
       </BrowserRouter>

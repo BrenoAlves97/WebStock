@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FiTrash, FiEdit2 } from 'react-icons/fi';
-import toast from 'react-hot-toast';
+import { FiTrash, FiEdit2, FiInfo } from 'react-icons/fi';
 
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app.js';
@@ -14,6 +13,14 @@ export const Dashboard = () => {
   const [itemModal, setItemModal] = React.useState(null);
 
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const handleNavigateDetail = (item) => {
+    navigate(`/detalhes/${item.id}`);
+  };
 
   const formatedValue = Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -44,10 +51,6 @@ export const Dashboard = () => {
       setLoading(false);
     }
   };
-
-  React.useEffect(() => {
-    fetchProducts();
-  }, []);
 
   const handleEditItem = (productId) => {
     navigate(`/editar/${productId}`);
@@ -101,11 +104,14 @@ export const Dashboard = () => {
                   <span className="flex-1 hidden sm:inline-block">{item.sales}</span>
                   <span className="flex-1">
                     <span className="space-x-4">
-                      <button>
-                        <FiTrash size={18} color="#fff" className="" onClick={() => handleModalActive(item)} />
+                      <button onClick={() => handleModalActive(item)}>
+                        <FiTrash size={18} color="#fff" />
                       </button>
-                      <button>
-                        <FiEdit2 size={18} color="#fff" className="" onClick={() => handleEditItem(item.id)} />
+                      <button onClick={() => handleEditItem(item.id)}>
+                        <FiEdit2 size={18} color="#fff" />
+                      </button>
+                      <button onClick={() => handleNavigateDetail(item)}>
+                        <FiInfo size={18} color="#fff" />
                       </button>
                     </span>
                   </span>
