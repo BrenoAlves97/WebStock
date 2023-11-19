@@ -93,7 +93,7 @@ export const Form = () => {
 
       const product = {
         id: idDoc,
-        name: productName.toUpperCase(),
+        name: productName,
         price: productPrice,
         description: productDescription,
         category: productCategory,

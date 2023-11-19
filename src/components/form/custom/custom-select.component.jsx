@@ -17,9 +17,11 @@ export const CustomSelect = ({ id, label, value, setValue, ...props }) => {
         {...props}
       >
         <option value="">Escolha</option>
-        <option value="camisas">Camisas</option>
-        <option value="bolsas">Bolsas</option>
-        <option value="itens">Itens Diversos</option>
+        <option value="Primeira">Primeira</option>
+        <option value="Segunda">Segunda</option>
+        <option value="Terceira">Terceira</option>
+        <option value="Quarta">Quarta</option>
+        <option value="Quinta">Quinta</option>
       </select>
     </>
   );
