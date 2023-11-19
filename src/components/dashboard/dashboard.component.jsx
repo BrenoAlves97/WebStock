@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { FiTrash, FiEdit2 } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
-import { doc, deleteDoc, getDocs, collection } from 'firebase/firestore';
-import { ref, deleteObject } from 'firebase/storage';
-import { db, storage } from '../../firebase/firebase.app.js';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../../firebase/firebase.app.js';
+import { Modal } from '../modal/modal.component.jsx';
 
 export const Dashboard = () => {
   const [products, setProducts] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+
+  const [itemModal, setItemModal] = React.useState(null);
 
   const navigate = useNavigate();
 
@@ -51,21 +53,8 @@ export const Dashboard = () => {
     navigate(`/editar/${productId}`);
   };
 
-  const handleRemoveItem = async (product) => {
-    await deleteDoc(doc(db, '@products', String(product.id)))
-      .then(async () => {
-        product.images.map(async (image) => {
-          const imagePath = `images/${image.id}`;
-          const imageRef = ref(storage, imagePath);
-          await deleteObject(imageRef).then(async () => {
-            setProducts((products) => products.filter((item) => item.id !== product.id));
-          });
-        });
-        return toast.success('Produto removido de sua lista');
-      })
-      .catch((err) => {
-        return toast.error('Houve algum erro...');
-      });
+  const handleModalActive = (item) => {
+    setItemModal(item);
   };
 
   if (loading)
@@ -113,7 +102,7 @@ export const Dashboard = () => {
                   <span className="flex-1">
                     <span className="space-x-4">
                       <button>
-                        <FiTrash size={18} color="#fff" className="" onClick={() => handleRemoveItem(item)} />
+                        <FiTrash size={18} color="#fff" className="" onClick={() => handleModalActive(item)} />
                       </button>
                       <button>
                         <FiEdit2 size={18} color="#fff" className="" onClick={() => handleEditItem(item.id)} />
@@ -125,6 +114,7 @@ export const Dashboard = () => {
             </ul>
           </div>
         </div>
+        {itemModal !== null && <Modal item={itemModal} handleItem={setItemModal} handleProducts={setProducts} />}
       </>
     )
   );
