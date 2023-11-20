@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiTrash, FiEdit2, FiInfo } from 'react-icons/fi';
 
-import { getDocs, collection } from 'firebase/firestore';
+import { getDocs, collection, query, orderBy } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app.js';
 import { Modal } from '../modal/modal.component.jsx';
 
@@ -30,7 +30,8 @@ export const Dashboard = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const querySnapshot = await getDocs(collection(db, '@products'));
+      const q = query(collection(db, '@products'), orderBy('created', 'desc'));
+      const querySnapshot = await getDocs(q);
       let arrData = [];
       querySnapshot.forEach((doc) => {
         arrData.push({
