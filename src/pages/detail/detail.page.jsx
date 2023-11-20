@@ -27,7 +27,7 @@ export const Detail = () => {
 
     window.addEventListener('resize', handleSizeWindow);
 
-    () => window.removeEventListener('resize', handleSizeWindow);
+    return () => window.removeEventListener('resize', handleSizeWindow);
   }, []);
 
   React.useEffect(() => {
