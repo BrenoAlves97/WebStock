@@ -8,7 +8,9 @@ export const Footer = () => {
     "
     >
       <div className="max-w-3xl mx-auto w-full h-16 sm:h-20 text-white font-bold text-base flex items-center justify-center">
-        <p className="break-words text-center font-mono">Empresa@2023, todos os direitos reservados. </p>
+        <p className="break-words text-center font-mono">
+          Empresa {new Date().getFullYear()} todos os direitos reservados.
+        </p>
       </div>
     </footer>
   );

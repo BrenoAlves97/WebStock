@@ -11,15 +11,15 @@
   height: calc(80vh - 8rem);
 }
 
-.edited-height::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 2px;
 }
 
-.edited-height::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #565656;
 }
 
-.edited-height::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: none;
   border-radius: 1rem;
   border: 2px solid #f9fafb;
