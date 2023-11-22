@@ -8,6 +8,7 @@ import { Edit } from '../pages/edit/edit.page.jsx';
 import { Detail } from '../pages/detail/detail.page.jsx';
 import { Login } from '../pages/login/login.page.jsx';
 import { Layout } from '../components/layout/layout.component.jsx';
+import { Notfound } from '../pages/notfound/notfound.page.jsx';
 
 export const router = createBrowserRouter([
    {
@@ -50,5 +51,9 @@ export const router = createBrowserRouter([
    {
       path: '/login',
       element: <Login />,
+   },
+   {
+      path: '*',
+      element: <Notfound />,
    },
 ]);
