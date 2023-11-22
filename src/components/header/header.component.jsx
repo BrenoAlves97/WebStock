@@ -11,7 +11,7 @@ import { auth } from '../../firebase/firebase.app.js';
 export const Header = () => {
    const navigate = useNavigate();
 
-   const { user } = React.useContext(AuthContext);
+   const { user, loadingAuth } = React.useContext(AuthContext);
 
    const handleNavigateProducts = () => {
       navigate('/estoque', { replace: true });
@@ -36,7 +36,7 @@ export const Header = () => {
                Estoque<span className="text-gray-200 font-bold">Web</span>
             </h2>
 
-            {user && (
+            {!loadingAuth && user && (
                <span className="items-center gap-1 ml-4 text-base font-bold text-gray-300 hidden sm:flex">
                   <span>
                      <FiUser size={16} color="#f7f7f7" />

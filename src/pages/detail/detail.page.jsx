@@ -74,7 +74,7 @@ export const Detail = () => {
                         <SwiperSlide key={image.name}>
                            <div
                               style={{ display: !arrImages.includes(image.url) ? 'flex' : 'none' }}
-                              className="w-full h-72 rounded-sm bg-gray-400 flex items-center justify-center"
+                              className="w-full h-72 md:h-96 rounded-sm bg-gray-400 flex items-center justify-center"
                            >
                               <ClipLoader size={32} color="#141414" />
                            </div>
@@ -82,7 +82,7 @@ export const Detail = () => {
                               onLoad={() => handleLoadImage(image)}
                               style={{ display: arrImages.includes(image.url) ? 'flex' : 'none' }}
                               src={image.url}
-                              className="w-full h-72 rounded-sm object-cover object-center"
+                              className="w-full h-72 md:h-96 rounded-sm object-cover object-center"
                               alt={image.id}
                            />
                         </SwiperSlide>
