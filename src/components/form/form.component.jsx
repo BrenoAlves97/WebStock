@@ -17,6 +17,8 @@ import { CustomTextArea } from './custom-text-area/custom-text-area.component.js
 import { CustomSelect } from './custom-select/custom-select.component.jsx';
 import { CustomInputFile } from './custom-input-file/custom-input-file.component.jsx';
 
+import { categories } from '../../data/categories/index.js';
+
 export const Form = () => {
    // states -> send to firebase
    const [productName, setProductName] = React.useState('');
@@ -176,6 +178,7 @@ export const Form = () => {
                   name="category"
                   value={productCategory}
                   setValue={setProductCategory}
+                  data={categories}
                />
             </div>
 
