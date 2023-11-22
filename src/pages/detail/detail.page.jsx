@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { Container } from '../../components/container/container.component.jsx';
+
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase.app';
 
@@ -70,15 +72,15 @@ export const Detail = () => {
 
   if (loading)
     return (
-      <div className="w-full bg-gray-300 px-6 bg-gradient-to-r from-gray-600 via-slate-800 to-gray-900 py-6 flex-1">
+      <Container>
         <h2 className="font-medium text-xl sm:text-2xl text-white max-w-4xl w-full mx-auto text-center">
           Buscando produto...
         </h2>
-      </div>
+      </Container>
     );
 
   return (
-    <div className="w-full bg-gray-300 px-6 bg-gradient-to-r from-gray-600 via-slate-800 to-gray-900 py-6 flex-1">
+    <Container>
       <div className="w-full max-w-4xl mx-auto">
         <div className="w-full flex">
           <Swiper slidesPerView={slidesView} pagination={{ clickable: true }} navigation>
@@ -124,6 +126,6 @@ export const Detail = () => {
           </div>
         )}
       </div>
-    </div>
+    </Container>
   );
 };
