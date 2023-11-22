@@ -28,10 +28,11 @@ export const Login = () => {
          await signInWithEmailAndPassword(auth, email, password).then(() => {
             setLoading(false);
             navigate('/estoque', { replace: true });
-            return toast.success("Bem-vindo novamente! :D")
+            return toast.success('Bem-vindo novamente! :D');
          });
       } catch (error) {
          console.log(error);
+         setLoading(false);
          return toast.error('Houve algum erro...');
       }
    };
