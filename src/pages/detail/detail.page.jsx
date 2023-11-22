@@ -48,22 +48,6 @@ export const Detail = () => {
       fetchProduct();
    }, [id]);
 
-   //  React.useEffect(() => {
-   //     const handleSizeWindow = () => {
-   //        if (window.innerWidth < 720) {
-   //           setSlidesView(1);
-   //        } else {
-   //           setSlidesView(2);
-   //        }
-   //     };
-
-   //     handleSizeWindow();
-
-   //     window.addEventListener('resize', handleSizeWindow);
-
-   //     () => window.removeEventListener('resize', handleSizeWindow);
-   //  }, []);
-
    const handleLoadImage = (image) => {
       setArrImages((prevState) => [...prevState, image.url]);
    };
