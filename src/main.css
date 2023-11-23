@@ -3,41 +3,41 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
-  outline: none;
+   box-sizing: border-box;
+   outline: none;
 }
 
 .edited-height {
-  height: calc(80vh - 8rem);
+   height: calc(80vh - 8rem);
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #565656;
+   background: #565656;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: none;
-  border-radius: 1rem;
-  border: 2px solid #f9fafb;
+   background-color: #f9fafb;
+   border-radius: 1rem;
+   border: 2px solid #565656;
 }
 
 body,
 html,
 #root {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
+   width: 100%;
+   min-height: 100vh;
+   overflow-x: hidden;
+   display: flex;
+   flex-direction: column;
 }
 
 input::placeholder,
 textarea::placeholder,
 select,
 option {
-  font-family: 'Poppins';
+   font-family: 'Poppins';
 }
