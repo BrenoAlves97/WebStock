@@ -131,10 +131,10 @@ export const Form = () => {
    };
 
    return (
-      <form className="w-full mb-6" onSubmit={handleSubmitPress}>
+      <form className="w-full mb-6 animate-fadeOn" onSubmit={handleSubmitPress}>
          <h2 className="text-2xl sm:text-3xl font-bold text-white my-6 font-sans">Registre seu produto</h2>
 
-         <div className="flex gap-8 sm:flex-row flex-col">
+         <div className="flex gap-8 sm:flex-row flex-col ">
             <div className="flex-1">
                <CustomInput
                   id="name"
