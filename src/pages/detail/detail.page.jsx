@@ -65,7 +65,7 @@ export const Detail = () => {
 
    return (
       <Container>
-         <div className="w-full max-w-4xl mx-auto ">
+         <div className="w-full max-w-4xl mx-auto animate-fadeOn">
             <div className="w-full flex">
                <Swiper slidesPerView={slidesView} pagination={{ clickable: true }} navigation>
                   {product &&

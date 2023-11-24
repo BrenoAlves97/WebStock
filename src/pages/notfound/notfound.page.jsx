@@ -8,7 +8,7 @@ import { Container } from '../../components/container/container.component.jsx';
 export const Notfound = () => {
    return (
       <Container>
-         <div className="text-center ">
+         <div className="text-center animate-fadeOn">
             <div className="flex items-center flex-col gap-1">
                <div className="flex items-center justify-center gap-2">
                   <FiAlertOctagon size={80} color="#FFFF00" />

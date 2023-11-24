@@ -83,7 +83,7 @@ export const Dashboard = () => {
       products.length > 0 &&
       !loading && (
          <>
-            <div className="w-full max-w-4xl mx-auto ">
+            <div className="w-full max-w-4xl mx-auto animate-fadeOn">
                <div className="w-full text-gray-50">
                   <div>
                      <div className="w-full flex text-white text-center font-mediun text-base sm:text-xl uppercase">
