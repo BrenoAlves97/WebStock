@@ -1,8 +1,18 @@
-# React + Vite
+# Web Stock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Estoque Web
 
-Currently, two official plugins are available:
+O projeto Estoque Web visa fornecer uma solução eficiente para gerenciar e monitorar o estoque de uma empresa. Com recursos intuitivos e amigáveis, o sistema oferece uma maneira fácil e eficaz de acompanhar o fluxo de produtos, garantindo uma gestão de inventário.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Recursos Principais
+
+Cadastro de Produtos: Adicione novos produtos ao estoque, incluindo informações detalhadas como nome, descrição, preço, imagens, quantidade de produtos em estoque...
+
+Movimentação de Estoque: Controle o fluxo de produtos,
+remova produtos de seu estoque para manter o atualizado, atualize também informações (descrição, nome, preço e quantidade) caso haja alguma alteração em determinado produto.
+
+Acompanhar Informações: Terá sempre atualizada a lista de produtos, podendo acessar mais informações sobre cada um, na página de detalhes.
+
+## Contato
+
+Para sugestões, dúvidas ou informações adicionais, entre em contato pelo email: brenoalvess97@outlook.com
