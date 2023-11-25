@@ -7,6 +7,7 @@ import { db } from '../../firebase/firebase.app.js';
 import { Modal } from '../modal/modal.component.jsx';
 
 import { AuthContext } from '../../contexts/auth-context.jsx';
+import { ChangeTitle } from '../change-title-page/change-title.component.jsx';
 
 export const Dashboard = () => {
    const [products, setProducts] = React.useState([]);
@@ -68,6 +69,7 @@ export const Dashboard = () => {
    if (loading)
       return (
          <div className="w-full max-w-3xl mx-auto flex items-center text-center justify-center mt-24">
+            <ChangeTitle title="Produtos" />
             <h2 className="font-medium text-xl sm:text-2xl text-white">Buscando produtos...</h2>
          </div>
       );
@@ -75,6 +77,7 @@ export const Dashboard = () => {
    if (products.length === 0)
       return (
          <div className="w-full max-w-3xl mx-auto items-center text-center flex justify-center mt-24">
+            <ChangeTitle title="Produtos" />
             <h2 className="font-medium text-xl sm:text-2xl text-white">Nenhum produto encontrado...</h2>
          </div>
       );
@@ -83,6 +86,7 @@ export const Dashboard = () => {
       products.length > 0 &&
       !loading && (
          <>
+            <ChangeTitle title="Produtos" />
             <div className="w-full max-w-4xl mx-auto animate-fadeOn">
                <div className="w-full text-gray-50">
                   <div>
