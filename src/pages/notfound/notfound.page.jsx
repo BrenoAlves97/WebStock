@@ -4,10 +4,12 @@ import { FiAlertOctagon } from 'react-icons/fi';
 import { TbError404 } from 'react-icons/tb';
 
 import { Container } from '../../components/container/container.component.jsx';
+import { ChangeTitle } from '../../components/change-title-page/change-title.component.jsx';
 
 export const Notfound = () => {
    return (
       <Container>
+         <ChangeTitle title="404" />
          <div className="text-center animate-fadeOn">
             <div className="flex items-center flex-col gap-1">
                <div className="flex items-center justify-center gap-2">

@@ -93,6 +93,8 @@ export const Form = () => {
          productPrice === '' &&
          quantityInStock === '';
 
+      if (checkInputs) return toast.error('Preencha os campos...');
+
       if (!checkInputs) {
          const idDoc = uuidV4();
 
@@ -105,7 +107,7 @@ export const Form = () => {
             category: productCategory,
             sales: 0,
             quantity: quantityInStock,
-            created: new Date(),
+            createdAt: new Date(),
             images: imagesArr,
          };
 

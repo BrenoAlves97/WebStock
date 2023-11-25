@@ -11,6 +11,7 @@ import { auth } from '../../firebase/firebase.app.js';
 import { Container } from '../../components/container/container.component.jsx';
 import { CustomInput } from '../../components/form/custom-input/custom-input.component.jsx';
 import { CustomButton } from '../../components/form/custom-button/custom-button.component.jsx';
+import { ChangeTitle } from '../../components/change-title-page/change-title.component.jsx';
 
 export const Login = () => {
    const [email, setEmail] = React.useState('');
@@ -39,6 +40,7 @@ export const Login = () => {
 
    return (
       <Container>
+         <ChangeTitle title="Login" />
          <div className="w-full max-w-2xl mx-auto">
             <div className="w-full flex flex-col gap-4 justify-center items-center">
                <h2 className="text-3xl md:text-4xl text-white font-bold text-center">Acessar Conta</h2>
@@ -56,10 +58,9 @@ export const Login = () => {
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute p-2 right-1 top-1 ml-4 cursor-pointer"
                      >
-                        {!showPassword && password.length > 0 && (
+                        {showPassword ? (
                            <FiEye className="animate-showItem" color="#141414" size={18} />
-                        )}
-                        {showPassword && password.length > 0 && (
+                        ) : (
                            <FiEyeOff className="animate-showItem" color="#141414" size={18} />
                         )}
                      </span>

@@ -9,6 +9,7 @@ import { db } from '../../firebase/firebase.app';
 import { CustomButton } from '../../components/form/custom-button/custom-button.component';
 import { CustomInput } from '../../components/form/custom-input/custom-input.component';
 import { CustomTextArea } from '../../components/form/custom-text-area/custom-text-area.component';
+import { ChangeTitle } from '../../components/change-title-page/change-title.component';
 
 export const Edit = () => {
    const [productName, setProductName] = React.useState('');
@@ -47,7 +48,7 @@ export const Edit = () => {
       setLoading(true);
       const docRef = doc(db, '@products', id);
       await updateDoc(docRef, {
-         name: productName.toUpperCase(),
+         name: productName,
          description: productDescription,
          price: productPrice,
          quantity: quantityInStock,
@@ -67,12 +68,14 @@ export const Edit = () => {
       <div className="flex-1 w-full bg-gray-300 px-6 bg-gradient-to-r from-gray-600 via-slate-800 to-gray-900 py-6">
          {loading && (
             <div className="w-full max-w-4xl mx-auto items-center text-center flex justify-center mt-24">
+               <ChangeTitle title="Editar" />
                <h2 className="font-medium text-xl sm:text-2xl text-white">Carregando informações...</h2>
             </div>
          )}
 
          {!loading && (
             <form className="w-full max-w-4xl px-6 mx-auto mb-6 animate-fadeOn" onSubmit={handleUpdate}>
+               <ChangeTitle title="Editar" />
                <h2 className="text-2xl sm:text-3xl font-bold text-white my-6 font-sans">Editar Produto</h2>
                <div>
                   <CustomInput
